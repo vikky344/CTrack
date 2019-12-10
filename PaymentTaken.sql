@@ -1,0 +1,33 @@
+CREATE TABLE [dbo].[PaymentTaken] (
+
+	PaymentTakenPID BIGINT IDENTITY(1,1) NOT NULL,
+	PeoplePID BIGINT NOT NULL,
+	ChittiPID BIGINT NOT NULL,
+	[Month] INT NOT NULL,
+	Amount MONEY NOT NULL,	
+	CreatedON DATETIME NOT NULL DEFAULT GETDATE(),
+	UpdatedOn DATETIME NULL,
+	CreatedBy BIGINT NOT NULL,
+	UpdatedBy BIGINT NULL
+)
+
+GO
+
+--PK_PaymentTaken
+ALTER TABLE [dbo].[PaymentTaken]
+	ADD CONSTRAINT [PK_PaymentTaken] PRIMARY KEY CLUSTERED ([PaymentTaken] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY= OFF, STATISTICS_NORECOMPUTE = OFF)
+
+GO
+
+--FK_PaymentTaken_People
+ALTER TABLE [dbo].[PaymentTaken]
+	ADD CONSTRAINT [FK_PaymentTaken_People] FOREIGN KEY ([PeoplePID]) REFERENCES [dbo].[People]([PeoplePID]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+GO
+	
+--FK_PaymentTaken_Chitti
+ALTER TABLE [dbo].[PaymentTaken]
+	ADD CONSTRAINT [FK_PaymentTaken_Chitti] FOREIGN KEY ([ChittiPID]) REFERENCES [dbo].[Chitti]([ChittiPID]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+GO
+

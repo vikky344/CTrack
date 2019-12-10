@@ -1,0 +1,5 @@
+CREATE DATABASE CTrack
+GO
+
+USE CTrack
+GO
